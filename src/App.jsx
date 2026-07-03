@@ -22,6 +22,15 @@ const App = () => {
   // --- DATA CONTENT ---
   const EXPERIENCES = [
     {
+      company: "Relativity Space",
+      role: "Manufacturing Engineer I — Fluids Subassemblies",
+      date: "2026 - Present",
+      details: [
+        "Joined the Fluids Subassemblies team supporting manufacturing of propellant feed system hardware.",
+        "Bringing thesis-level expertise in propellant feedline transients and cavitating flow into production hardware."
+      ]
+    },
+    {
       company: "Benchmark Space Systems",
       role: "Production Engineering Lead Intern",
       date: "2024",
@@ -55,9 +64,15 @@ const App = () => {
   const PROJECTS = [
     {
       title: "M.S. Thesis",
-      sub: "Microgravity Fluid Dynamics",
-      tech: "OpenFOAM / VOF Method",
-      desc: "Developing novel CFD solvers to predict 'Fluid Hammer' events during propellant priming in deep-space propulsion systems. Validated against NASA experimental data."
+      sub: "Cavitating Water Hammer in Feedlines",
+      tech: "OpenFOAM / Custom Cavitation Solver",
+      desc: "Developed a custom OpenFOAM cavitation solver (Kunz closure) to model priming transients and water hammer in spacecraft propellant feedlines. Ran a 20-case Latin hypercube parametric sweep and validated against published cavitating water-hammer benchmarks. Funded by a NASA Vermont Space Grant fellowship."
+    },
+    {
+      title: "Open-Hardware Water Quality Monitoring",
+      sub: "Intag Valley, Ecuador",
+      tech: "ESP32 / Atlas Scientific",
+      desc: "Led a student team designing and deploying open-hardware water quality monitoring stations across 31 waterways in the Intag Valley, Ecuador."
     },
     {
       title: "Generative Thermal Design",
@@ -91,9 +106,9 @@ const App = () => {
       desc: "As a personal project, I designed and released three new modules for the classic Lorena Barba 'Introduction to CFD Using Python course' covering the fundamentals of 'Data Driven Fluid Dynamics'."
     },
     {
-      title: "Finite Element Analysis Course",
-      sub: "Materials Science, FEA",
-      desc: "I am the primary instructor for ME1510- Introduction to Finite Element Analysis at UVM. I give lectures, create assignments, and grade 80 students."
+      title: "Computational Mechanical Engineering Lab",
+      sub: "ME1510",
+      desc: "I was the primary instructor for ME1510, UVM's Computational Mechanical Engineering Lab, teaching roughly 80 students. I gave lectures, wrote assignments, and graded, with an emphasis on rigorous understanding over button-pushing."
     },
   ];
 
@@ -452,11 +467,13 @@ const App = () => {
               </p>
               <div className="grid md:grid-cols-2 gap-12 font-mono text-sm text-slate-400 leading-relaxed">
                 <p>
-                  I am currently an M.S. candidate at UVM, specializing in data driven fluid dynamics for small
-                  propulsion systems.  I am a lifelong polymath, and my work ranges from CFD to materials science,
+                  I recently completed my M.S. in Mechanical Engineering at UVM, where my thesis focused on
+                  CFD modeling of priming transients and water hammer in spacecraft propellant feedlines. I'm now
+                  starting as a Manufacturing Engineer I on the Fluids Subassemblies team at Relativity Space in
+                  Long Beach, CA. I am a lifelong polymath, and my work ranges from CFD to materials science,
                   philosophy to spirituality.
 
-                  In my free time, you can find me listening to or playing bluegrass music, spening time in
+                  In my free time, you can find me listening to or playing bluegrass music, spending time in
                   the great outdoors, or reading. I have spent a lot of my life traveling, and have written about it
                   on my Substack.
                 </p>
@@ -525,16 +542,54 @@ const App = () => {
           )}
 
           {view === 'resume' && (
-            <div className="flex items-center justify-center h-[50vh]">
-              <SubtleCard className="p-12 text-center hover:border-cyan-500/50 group cursor-pointer">
-                <Download className="mx-auto mb-6 text-slate-600 group-hover:text-cyan-400 transition-colors" size={32} />
-                <h3 className="text-xl text-slate-200 font-light mb-2">GJ_RESUME_2025.PDF</h3>
-                <p className="font-mono text-xs text-slate-500 uppercase tracking-widest mb-8">Secure Document // 4.2 MB</p>
-                <span className="px-6 py-3 bg-white/5 text-xs font-mono text-cyan-400 uppercase tracking-widest rounded-sm group-hover:bg-cyan-500/10 transition-colors">
-                  Initiate Download
-                </span>
-              </SubtleCard>
-            </div>
+            <SubtleCard className="p-8 md:p-16">
+              <div className="flex items-center gap-4 mb-8 text-cyan-500/50">
+                <Mail size={24} />
+                <span className="font-mono text-xs uppercase tracking-widest">Get In Touch</span>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-12">
+                {/* PERSONAL CONTACT INFO */}
+                <ul className="space-y-6 font-mono text-sm">
+                  <li>
+                    <span className="text-slate-600 block text-xs uppercase mb-1">Email</span>
+                    <a href="mailto:gabriel.johnson@uvm.edu" className="text-slate-300 hover:text-cyan-400 transition-colors">
+                      gabriel.johnson@uvm.edu
+                    </a>
+                  </li>
+                  <li>
+                    <span className="text-slate-600 block text-xs uppercase mb-1">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/gabojohnson/" className="text-slate-300 hover:text-cyan-400 transition-colors">
+                      linkedin.com/in/gabojohnson
+                    </a>
+                  </li>
+                  <li>
+                    <span className="text-slate-600 block text-xs uppercase mb-1">GitHub</span>
+                    <a href="https://github.com/gabejohnsnn" className="text-slate-300 hover:text-cyan-400 transition-colors">
+                      github.com/gabejohnsnn
+                    </a>
+                  </li>
+                  <li>
+                    <span className="text-slate-600 block text-xs uppercase mb-1">Based In</span>
+                    <span className="text-slate-300">Long Beach, CA</span>
+                  </li>
+                </ul>
+
+                {/* SMALL RESUME BUTTON */}
+                <div className="flex md:justify-end items-start">
+                  <a
+                    href="/home/resume.pdf"
+                    download
+                    className="group inline-flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/5 rounded-sm hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-colors"
+                  >
+                    <Download size={16} className="text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                    <span className="font-mono text-xs text-slate-300 group-hover:text-cyan-400 uppercase tracking-widest transition-colors">
+                      Resume (PDF)
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </SubtleCard>
           )}
         </div>
       </div>
